@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Menu, MenuButton, MenuList, MenuItem, Button, Checkbox, VStack } from '@chakra-ui/react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 
-export const DemographicSelect = () => {
+export const CountrySelect = () => {
   // State to manage the selected options
   const [selectedItems, setSelectedItems] = useState({});
 

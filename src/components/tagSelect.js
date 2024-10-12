@@ -10,7 +10,6 @@ import {
 } from "@chakra-ui/react";
 
 const colorPalette = [
-    'whiteAlpha',
     'blackAlpha',
     'gray',
     'red',
@@ -24,8 +23,7 @@ const colorPalette = [
     'pink',
   ];
 
-const TagSelect = () => {
-  const [tags, setTags] = useState([]);
+const TagSelect = ({tags, setTags}) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleKeyDown = (event) => {
@@ -38,10 +36,20 @@ const TagSelect = () => {
       setInputValue(""); // Clear the input
     }
   };
-  const generateRandomColor = () => {
-    const randomColor = colorPalette[Math.floor(Math.random() * colorPalette.length)];
-    return randomColor
+
+  function generateConsistentInteger(inputString) {
+    // Create a hash code from the input string
+    let hash = 0;
+    for (let i = 0; i < inputString.length; i++) {
+      hash += inputString.charCodeAt(i); // Sum of character codes
+    }
+    
+    // Generate a consistent integer between 0 and 10
+    const result = Math.abs(hash) % 11; // Modulus to fit in the range [0, 10]
+    
+    return result;
   }
+
   const handleDelete = (tagToDelete) => {
     setTags((prevTags) => prevTags.filter((tag) => tag !== tagToDelete));
   };
@@ -56,7 +64,7 @@ const TagSelect = () => {
       />
       <Wrap spacing={2} mt="1rem">
         {tags.map((tag, index) => (
-          <Tag key={index} size="md" variant="solid">
+          <Tag key={index} size="md" variant="solid" colorScheme={colorPalette[generateConsistentInteger(tag)]}>
             <TagLabel>{tag}</TagLabel>
             <TagCloseButton onClick={() => handleDelete(tag)} />
           </Tag>

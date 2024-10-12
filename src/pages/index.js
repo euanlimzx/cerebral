@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Button, VStack, Text, Flex } from "@chakra-ui/react";
-import { DemographicSelect } from "@/components/demographicSelect";
+import { CountrySelect } from "@/components/countrySelect";
 import TagSelect from "@/components/tagSelect";
 import ProductGallery from "@/components/productGallery";
 import Header from "@/components/header";
 import SideBar from "@/components/sidebar"; // Import the updated Sidebar component
 
 export default function Home() {
+  const [pid, setPid] = useState(-1);
+  const [countries, setCountries] = useState([]);
+  const [tags, setTags] = useState([]);
+
+  const fuck = () => {
+    console.log({
+      pid: pid,
+      countries: countries,
+      tags: tags,
+    });
+  };
   return (
     <Flex minHeight="100vh" width="100%">
       {/* Sidebar - Takes up 25% of the screen */}
@@ -32,22 +43,22 @@ export default function Home() {
       >
         <Header />
         <Text fontSize="xx-large" fontWeight="semibold" pt="9" pb="4">
-          What product would you like to evaluate today?
+          Which product would you like to evaluate today?
         </Text>
-        <ProductGallery />
+        <ProductGallery pid={pid} setPid={setPid} />
         {/* Additional Content */}
         <Text fontSize="xx-large" fontWeight="semibold" pt="9" pb="4">
           Which geographical market do you want to break into?
         </Text>
-        <DemographicSelect />
+        <CountrySelect countries={countries} setCountries={setCountries} />
         <Text fontSize="xx-large" fontWeight="semibold" pt="9" pb="4">
           Describe your target demographic to us.
         </Text>
-        <TagSelect />
+        <TagSelect tags={tags} setTags={setTags} />
         <Text fontSize="xx-large" fontWeight="semibold" pt="9" pb="4">
-          Evaluate product-market fit
+          Good to go!
         </Text>
-        {/* <Button onClick={fetchEvaluation}>Fuck</Button> */}
+        <Button onClick={fuck}>Evaluate product-market fit</Button>
       </Box>
     </Flex>
   );
