@@ -1,7 +1,6 @@
 import { Menu, MenuButton, MenuList, MenuItem, Box } from "@chakra-ui/react";
-import { Button } from "@chakra-ui/react";
+import { Button, Image } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { Image } from "@chakra-ui/react";
 
 export function DemographicSelect() {
   return (

@@ -1,50 +1,46 @@
-import { Box, HStack, Text, Flex, Button } from "@chakra-ui/react";
+import React from 'react';
+import {
+  Box,
+  Button,
+  VStack,
+  Text,
+  Flex,
+} from '@chakra-ui/react';
 import ProductGallery from "@/components/productGallery";
-import { DemographicSelect } from "@/components/demographicSelect";
-import { useRef } from "react";
-
-import localFont from "next/font/local";
 import Header from "@/components/header";
-import { Text, Box, ChakraProvider } from "@chakra-ui/react";
-import SideBar from "../components/sidebar";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import SideBar from "@/components/sidebar"; // Import the updated Sidebar component
 
 export default function Home() {
-  const filterButtonRef = useRef(null);
-  const scrollToFilter = () => {
-    console.log(filterButtonRef.current);
-    if (filterButtonRef.current) {
-      filterButtonRef.current.scrollIntoView({ behaviour: "smooth" });
-    }
-  };
   return (
-    <>
-      <Flex bg="#fafbfb" flexDir="row">
-        <Box bg="red" flex="1">
-          FOR ERIC
-        </Box>
-        <Box flex="4" py="8" px="12">
-          <Header />
-          <Text fontSize="xx-large" fontWeight="semibold" pt="9" pb="4">
-            What product would you like to evaluate today?
-          </Text>
-          <ProductGallery />
-          <Text fontSize="xx-large" fontWeight="semibold" pt="9" pb="4">
-            Select your target demographic
-          </Text>
-          <DemographicSelect/>
-        </Box>
-      </Flex>
-    </>
+    <Flex minHeight="100vh" width="100%">
+      {/* Sidebar - Takes up 25% of the screen */}
+      <Box
+        width="25%"
+        bg="gray.100"
+        p="4"
+        boxShadow="md"
+        position="fixed"
+        height="100vh"
+        left={0}
+        top={0}
+      >
+        <SideBar />
+      </Box>
+
+      {/* Main Content - Takes up 75% of the screen */}
+      <Box
+        flex="1"
+        ml="25%"  // To prevent content from being hidden behind the sidebar
+        p="8"
+        bg="#fafbfb"
+      >
+        <Header />
+        <Text fontSize="xx-large" fontWeight="semibold" pt="9" pb="4">
+          What product would you like to evaluate today?
+        </Text>
+        <ProductGallery />
+        {/* Additional Content */}
+      </Box>
+    </Flex>
   );
 }
