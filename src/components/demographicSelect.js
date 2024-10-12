@@ -1,12 +1,25 @@
-import { Menu, MenuButton, MenuList, MenuItem, Box } from "@chakra-ui/react";
-import { Button } from "@chakra-ui/react";
-import { ChevronDownIcon } from "@chakra-ui/icons";
-import { Image } from "@chakra-ui/react";
+import React, { useState } from 'react';
+import { Menu, MenuButton, MenuList, MenuItem, Button, Checkbox, VStack } from '@chakra-ui/react';
+import { ChevronDownIcon } from '@chakra-ui/icons';
 
-export function DemographicSelect() {
+export const DemographicSelect = () => {
+  // State to manage the selected options
+  const [selectedItems, setSelectedItems] = useState({});
+
+  const handleCheckboxChange = (event) => {
+    const { name, checked } = event.target;
+    setSelectedItems((prevState) => ({
+      ...prevState,
+      [name]: checked,
+    }));
+  };
+
+  const fuck = () => {
+    console.log(selectedItems)
+}
   return (
     <Menu closeOnSelect={false} onClose={fuck()}>
-      <MenuButton as={Button} rightIcon={<ChevronDownIcon />} bg="dark">
+      <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
         Select Options
       </MenuButton>
       <MenuList>
@@ -43,4 +56,3 @@ export function DemographicSelect() {
     </Menu>
   );
 };
-

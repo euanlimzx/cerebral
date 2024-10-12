@@ -9,6 +9,21 @@ import {
   Text,
 } from "@chakra-ui/react";
 
+const colorPalette = [
+    'whiteAlpha',
+    'blackAlpha',
+    'gray',
+    'red',
+    'orange',
+    'yellow',
+    'green',
+    'teal',
+    'blue',
+    'cyan',
+    'purple',
+    'pink',
+  ];
+
 const TagSelect = () => {
   const [tags, setTags] = useState([]);
   const [inputValue, setInputValue] = useState("");
@@ -23,7 +38,10 @@ const TagSelect = () => {
       setInputValue(""); // Clear the input
     }
   };
-
+  const generateRandomColor = () => {
+    const randomColor = colorPalette[Math.floor(Math.random() * colorPalette.length)];
+    return randomColor
+  }
   const handleDelete = (tagToDelete) => {
     setTags((prevTags) => prevTags.filter((tag) => tag !== tagToDelete));
   };
@@ -38,7 +56,7 @@ const TagSelect = () => {
       />
       <Wrap spacing={2} mt="1rem">
         {tags.map((tag, index) => (
-          <Tag key={index} size="md" variant="solid" colorScheme="blue">
+          <Tag key={index} size="md" variant="solid">
             <TagLabel>{tag}</TagLabel>
             <TagCloseButton onClick={() => handleDelete(tag)} />
           </Tag>
