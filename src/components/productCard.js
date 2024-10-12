@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 export function ProductCard({ setPid, product }) {
   return (
-    <Card h="25rem" w="15rem" borderRadius="2rem" minW="10rem" onClick={() => setPid(1)}>
+    <Card h="25rem" w="45rem" borderRadius="2rem" onClick={() => setPid(1)}>
       <CardBody>
         {/* <Image
           src={product["Image"]}

@@ -189,7 +189,7 @@ export default function ProductGallery({ pid, setPid }) {
 
   return (
     <Box height="100vh" display="flex" flexDirection="row">
-    <HStack spacing="5" overflowX="scroll" w="40rem">
+    <HStack spacing="5" overflowX="scroll" w="60rem">
       {data.map((product) => (
         <ProductCard setPid={setPid} product={product} key={product.id} />
       ))}
