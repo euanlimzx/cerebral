@@ -1,5 +1,10 @@
+import { Box, HStack, Text, Flex, Button } from "@chakra-ui/react";
+import ProductGallery from "@/components/productGallery";
+import { useRef } from "react";
+
 import localFont from "next/font/local";
-import { Text, Box } from "@chakra-ui/react";
+import Header from "@/components/header";
+import { ProductCard } from "@/components/productCard";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -13,11 +18,28 @@ const geistMono = localFont({
 });
 
 export default function Home() {
+  const filterButtonRef = useRef(null);
+  const scrollToFilter = () => {
+    console.log(filterButtonRef.current)
+    if (filterButtonRef.current) {
+    }
+  };
   return (
     <>
-      <Box styles="p-5">
-        <Text>Hello</Text>
-      </Box>
+      <Flex bg="#fafbfb" flexDir="row" h="100vh">
+        <Box bg="red" flex="1">
+          FOR ERIC
+        </Box>
+        <Box flex="4" p="5">
+          <Header />
+          <ProductGallery />
+          <Button onClick={scrollToFilter}>Bithc</Button>
+          <Box height="10vh">
+            kfjief
+          </Box>
+          <Box ref={filterButtonRef}>hello</Box>
+        </Box>
+      </Flex>
     </>
   );
 }
