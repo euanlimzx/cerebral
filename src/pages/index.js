@@ -1,5 +1,6 @@
 import localFont from "next/font/local";
-import { Text, Box } from "@chakra-ui/react";
+import { Text, Box, ChakraProvider } from "@chakra-ui/react";
+import SideBar from "../components/sidebar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -15,9 +16,11 @@ const geistMono = localFont({
 export default function Home() {
   return (
     <>
-      <Box styles="p-5">
-        <Text>Hello</Text>
-      </Box>
+        <Box styles="p-5">
+          <Text>Hello</Text>
+        </Box>
+
+        <SideBar></SideBar>
     </>
   );
 }
