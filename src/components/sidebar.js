@@ -1,27 +1,50 @@
 import React from 'react';
 import {
   Box,
-  Button,
   VStack,
   Text,
+  Flex
 } from '@chakra-ui/react';
+import {
+  DragHandleIcon,
+  EditIcon,
+  InfoOutlineIcon,
+  SettingsIcon,
+  ChevronLeftIcon
+} from '@chakra-ui/icons';
 
 function InteractiveBox({ hoverEffect, children }) {
   return (
     <Box
-      padding="8px"
-      textAlign="center"
+      position="relative"
+      padding="13px"
+      textAlign="start"
       borderRadius="5px"
-      bg="gray.100"
+      bg="white"
       transition="all 0.2s ease-in-out"
       _hover={hoverEffect ? {
-        bg: "blue.100",         // Hover background color
-        cursor: "pointer",      // Changes the cursor
-        transform: "scale(1.05)", // Slight zoom-in
-        boxShadow: "lg",        // Adds shadow on hover
+        bg: "lightgrey",
+        cursor: "pointer",
+        transform: "scale(1.05)",
+        boxShadow: "lg",
       } : {}}
+      role="group"
     >
       {children}
+
+      {hoverEffect && (
+        <Box
+          position="absolute"
+          top="50%"
+          right="10px"
+          transform="translateY(-50%)"
+          opacity={0}
+          _groupHover={{ opacity: 1 }}
+          transition="opacity 0.2s ease-in-out"
+        >
+          <DragHandleIcon />
+        </Box>
+      )}
     </Box>
   );
 }
@@ -39,36 +62,65 @@ export default function SideBar() {
       boxShadow="md"
       zIndex={1}
     >
-      <Text fontSize="lg" fontWeight="bold" mb="4" borderBottom="1px solid" textAlign="center" paddingBottom="15px">
-        ThanksGiver
-      </Text>
+      <Flex
+      fontSize="lg"
+      fontWeight="bold"
+      mb="4"
+      borderBottom="1px solid"
+      paddingBottom="15px"
+      justifyContent="space-between"
+      alignItems="center"
+    >
+      <Text>ThanksGiver</Text>
+      <EditIcon />
+    </Flex>
       
-      <VStack spacing="4" align="stretch" marginTop="25px">
-        {/* Sidebar Items */}
-        <InteractiveBox hoverEffect={true} padding="8px" textAlign="center" borderRadius="5" >
-          Adult Diapers
+      <VStack spacing="2" align="stretch" marginTop="15px" position='relative' height = "400x">
+          <InteractiveBox hoverEffect={true} borderRadius="5" >
+            Adult Diapers
+          </InteractiveBox>
+        
+        <InteractiveBox hoverEffect={true} borderRadius="5">
+          Lubricant
+        </InteractiveBox>
+
+        <InteractiveBox hoverEffect={true} borderRadius="5">
+          Headphones
+        </InteractiveBox>
+
+        <InteractiveBox hoverEffect={true} borderRadius="5">
+          Mini Dress
+        </InteractiveBox>
+
+        <InteractiveBox hoverEffect={true} borderRadius="5">
+          Suits
         </InteractiveBox>
         
-        {/* More Sidebar Items */}
-        <InteractiveBox hoverEffect={true} padding="8px" textAlign="center" borderRadius="5">
-          Cetaphil Moisturizer
-        </InteractiveBox>
-
-        <InteractiveBox hoverEffect={true} padding="8px" textAlign="center" borderRadius="5">
-          Cetaphil Moisturizer
-        </InteractiveBox>
-
-        <InteractiveBox hoverEffect={true} padding="8px" textAlign="center" borderRadius="5">
-          Cetaphil Moisturizer
-        </InteractiveBox>
-
-        <InteractiveBox hoverEffect={true} padding="8px" textAlign="center" borderRadius="5">
-          Cetaphil Moisturizer
+        <InteractiveBox hoverEffect={true} borderRadius="5">
+          Hoodie
         </InteractiveBox>
         
-        <InteractiveBox hoverEffect={true} padding="8px" textAlign="center" borderRadius="5">
-          Cetaphil Moisturizer
+        <InteractiveBox hoverEffect={true} borderRadius="5">
+          Pants
         </InteractiveBox>
+
+        <Box marginBottom='60px'></Box>
+        
+        <Flex
+          position="absolute" 
+          bottom="0"
+          width='100%'     
+          padding="15px"
+          bg="white"    
+          borderTop="1px solid lightgray"  
+          justifyContent="space-between" 
+          alignItems="center" 
+          zIndex="10"
+        >
+          <SettingsIcon boxSize={6} />
+          <InfoOutlineIcon boxSize={6} />
+          <ChevronLeftIcon boxSize={6} />
+        </Flex>
       </VStack>
     </Box>
   );
