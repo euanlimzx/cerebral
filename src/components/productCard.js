@@ -1,18 +1,30 @@
-import { Card, CardBody, Image, Stack, Heading, ButtonGroup, Button, Divider, CardFooter, Text} from "@chakra-ui/react";
-export function ProductCard({setPid}) {
+import {
+  Card,
+  CardBody,
+  Image,
+  Stack,
+  Heading,
+  ButtonGroup,
+  Button,
+  Divider,
+  CardFooter,
+  Text,
+} from "@chakra-ui/react";
+export function ProductCard({ setPid, product }) {
   return (
-    <Card maxW="sm" borderRadius="2rem" minW="10rem" onClick={()=>setPid(1)}>
+    <Card h="25rem" w="15rem" borderRadius="2rem" minW="10rem" onClick={() => setPid(1)}>
       <CardBody>
-        <Image
-          src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+        {/* <Image
+          src={product["Image"]}
           alt="Green double couch with wooden legs"
           borderRadius="lg"
-        />
+        /> */}
         <Stack mt="6" spacing="3">
-          <Heading size="md">Living room Sofa</Heading>
-          <Text>
-            This sofa is perfect for modern tropical spaces, baroque inspired
-            spaces ...
+          <Heading size="md">
+            <Text noOfLines={1}>{product["Product Name"]}</Text>
+          </Heading>
+          <Text noOfLines={3}>
+            {product["About Product"]}
           </Text>
         </Stack>
       </CardBody>

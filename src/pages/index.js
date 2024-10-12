@@ -7,8 +7,8 @@ import Header from "@/components/header";
 import SideBar from "@/components/sidebar"; // Import the updated Sidebar component
 
 export default function Home() {
-  const [pid, setPid] = useState(-1);
-  const [countries, setCountries] = useState([]);
+  const [pid, setPid] = useState("");
+  const [country, setCountry] = useState("Select a Country");
   const [tags, setTags] = useState([]);
 
   const fuck = () => {
@@ -50,7 +50,7 @@ export default function Home() {
         <Text fontSize="xx-large" fontWeight="semibold" pt="9" pb="4">
           Which geographical market do you want to break into?
         </Text>
-        <CountrySelect countries={countries} setCountries={setCountries} />
+        <CountrySelect country={country} setCountry={setCountry} />
         <Text fontSize="xx-large" fontWeight="semibold" pt="9" pb="4">
           Describe your target demographic to us.
         </Text>
