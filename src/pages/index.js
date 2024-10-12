@@ -1,10 +1,10 @@
 import { Box, HStack, Text, Flex, Button } from "@chakra-ui/react";
 import ProductGallery from "@/components/productGallery";
+import { DemographicSelect } from "@/components/demographicSelect";
 import { useRef } from "react";
 
 import localFont from "next/font/local";
 import Header from "@/components/header";
-import { ProductCard } from "@/components/productCard";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -20,24 +20,27 @@ const geistMono = localFont({
 export default function Home() {
   const filterButtonRef = useRef(null);
   const scrollToFilter = () => {
-    console.log(filterButtonRef.current)
+    console.log(filterButtonRef.current);
     if (filterButtonRef.current) {
+      filterButtonRef.current.scrollIntoView({ behaviour: "smooth" });
     }
   };
   return (
     <>
-      <Flex bg="#fafbfb" flexDir="row" h="100vh">
+      <Flex bg="#fafbfb" flexDir="row">
         <Box bg="red" flex="1">
           FOR ERIC
         </Box>
-        <Box flex="4" p="5">
+        <Box flex="4" py="8" px="12">
           <Header />
+          <Text fontSize="xx-large" fontWeight="semibold" pt="9" pb="4">
+            What product would you like to evaluate today?
+          </Text>
           <ProductGallery />
-          <Button onClick={scrollToFilter}>Bithc</Button>
-          <Box height="10vh">
-            kfjief
-          </Box>
-          <Box ref={filterButtonRef}>hello</Box>
+          <Text fontSize="xx-large" fontWeight="semibold" pt="9" pb="4">
+            Select your target demographic
+          </Text>
+          <DemographicSelect/>
         </Box>
       </Flex>
     </>

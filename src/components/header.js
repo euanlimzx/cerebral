@@ -9,9 +9,6 @@ export default function Header() {
             <InfoIcon/>
         </HStack>
       </Box>
-      <Text fontSize="xx-large" fontWeight="semibold">
-        What product would you like to evaluate today?
-      </Text>
     </>
   );
 }
