@@ -62,66 +62,71 @@ export default function SideBar() {
       boxShadow="md"
       zIndex={1}
     >
+      {/* Header Section */}
       <Flex
-      fontSize="lg"
-      fontWeight="bold"
-      mb="4"
-      borderBottom="1px solid"
-      paddingBottom="15px"
-      justifyContent="space-between"
-      alignItems="center"
-    >
-      <Text>ThanksGiver</Text>
-      <EditIcon />
-    </Flex>
-      
-      <VStack spacing="2" align="stretch" marginTop="15px" position='relative' height = "400x">
-          <InteractiveBox hoverEffect={true} borderRadius="5" >
-            Adult Diapers
-          </InteractiveBox>
-        
-        <InteractiveBox hoverEffect={true} borderRadius="5">
+        fontSize="lg"
+        fontWeight="bold"
+        mb="4"
+        borderBottom="1px solid"
+        paddingBottom="15px"
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <Text>ThanksGiver</Text>
+        <EditIcon />
+      </Flex>
+
+      {/* Content Section */}
+      <VStack
+        spacing="2"
+        align="stretch"
+        marginTop="15px"
+        height="calc(100vh - 100px)"
+      >
+        <InteractiveBox hoverEffect={true}>
+          Adult Diapers
+        </InteractiveBox>
+
+        <InteractiveBox hoverEffect={true}>
           Lubricant
         </InteractiveBox>
 
-        <InteractiveBox hoverEffect={true} borderRadius="5">
+        <InteractiveBox hoverEffect={true}>
           Headphones
         </InteractiveBox>
 
-        <InteractiveBox hoverEffect={true} borderRadius="5">
+        <InteractiveBox hoverEffect={true}>
           Mini Dress
         </InteractiveBox>
 
-        <InteractiveBox hoverEffect={true} borderRadius="5">
+        <InteractiveBox hoverEffect={true}>
           Suits
         </InteractiveBox>
-        
-        <InteractiveBox hoverEffect={true} borderRadius="5">
+
+        <InteractiveBox hoverEffect={true}>
           Hoodie
         </InteractiveBox>
-        
-        <InteractiveBox hoverEffect={true} borderRadius="5">
+
+        <InteractiveBox hoverEffect={true}>
           Pants
         </InteractiveBox>
-
-        <Box marginBottom='60px'></Box>
-        
-        <Flex
-          position="absolute" 
-          bottom="0"
-          width='100%'     
-          padding="15px"
-          bg="white"    
-          borderTop="1px solid lightgray"  
-          justifyContent="space-between" 
-          alignItems="center" 
-          zIndex="10"
-        >
-          <SettingsIcon boxSize={6} />
-          <InfoOutlineIcon boxSize={6} />
-          <ChevronLeftIcon boxSize={6} />
-        </Flex>
       </VStack>
+
+      <Flex
+        position="absolute"
+        bottom="0"
+        left="0"
+        width="100%"
+        padding="15px"
+        bg="white"
+        borderTop="1px solid lightgray"
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <SettingsIcon boxSize={6} />
+        <InfoOutlineIcon boxSize={6} />
+        <ChevronLeftIcon boxSize={6} />
+      </Flex>
     </Box>
   );
 }
