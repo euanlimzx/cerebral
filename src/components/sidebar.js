@@ -12,6 +12,8 @@ import {
   SettingsIcon,
   ChevronLeftIcon
 } from '@chakra-ui/icons';
+import Image from 'next/image';
+
 
 function InteractiveBox({ hoverEffect, children }) {
   return (
@@ -72,7 +74,16 @@ export default function SideBar() {
         justifyContent="space-between"
         alignItems="center"
       >
-        <Text>ThanksGiver</Text>
+        <Box 
+          borderRadius="15px"
+          overflow="hidden"
+          >
+          <Image 
+            src="/images/evai_logo5.jpg" 
+            height={60}
+            width={60}
+          />
+        </Box>
         <EditIcon />
       </Flex>
 
