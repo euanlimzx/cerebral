@@ -20,6 +20,23 @@ export function Evaluation({ evaluation, pid }) {
     return obj;
   };
   findObjectById(pid);
+
+
+const calculatePercentages = () => {
+    const data = evaluation["actionBreakdown"]
+    const totalInteractions = data.total; // Total number of interactions
+    // Calculate percentages
+    const purchasePercentage = ((data.purchase / totalInteractions) * 100).toFixed(2);
+    const likePercentage = ((data.like / totalInteractions) * 100).toFixed(2);
+    const viewPercentage = ((data.view / totalInteractions) * 100).toFixed(2);
+    return {
+      purchasePercentage: parseFloat(purchasePercentage), // Convert back to number
+      likePercentage: parseFloat(likePercentage),         // Convert back to number
+      viewPercentage: parseFloat(viewPercentage),         // Convert back to number
+    };
+  };
+
+  console.log(calculatePercentages().likePercentage)
   return (
     <Flex
       justifyContent="center"
@@ -59,7 +76,7 @@ export function Evaluation({ evaluation, pid }) {
               <Stat pr="7">
                 <StatLabel>Viewed</StatLabel>
                 <StatNumber>
-                  {evaluation["actionBreakdown"]["view"]}
+                  {calculatePercentages().viewPercentage}
                   <Text fontSize="md" pl="1" as="span">
                     %
                   </Text>
@@ -69,7 +86,7 @@ export function Evaluation({ evaluation, pid }) {
               <Stat pr="7">
                 <StatLabel>Liked</StatLabel>
                 <StatNumber>
-                  {evaluation["actionBreakdown"]["like"]}
+                {calculatePercentages().likePercentage}
                   <Text fontSize="md" pl="1" as="span">
                     %
                   </Text>
@@ -78,7 +95,7 @@ export function Evaluation({ evaluation, pid }) {
               <Stat pr="7">
                 <StatLabel>Purchased</StatLabel>
                 <StatNumber>
-                  {evaluation["actionBreakdown"]["purchase"]}
+                {calculatePercentages().purchasePercentage}
                   <Text fontSize="md" pl="1" as="span">
                     %
                   </Text>
