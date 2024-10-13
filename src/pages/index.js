@@ -177,7 +177,7 @@ export default function Home() {
           </Flex>
         )}
         
-        {evaluationData && <Evaluation/>}
+        {evaluationData && <Evaluation evaluation={evaluationData}/>}
       </Box>
     </Flex>
   );

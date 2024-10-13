@@ -9,31 +9,7 @@ import {
 import { StarIcon, CheckIcon, WarningIcon } from "@chakra-ui/icons";
 import ReviewGallery from "./reviewGallery";
 
-export function Evaluation() {
-  const evaluation = {
-    avgStarRating: 5.0,
-    actionBreakdown: { purchase: 20.0, view: 50.0, like: 30.0 },
-    feedback:
-      "Overall, the Martha Stewart Crafts Stencil Tape is a versatile and user-friendly product that allows users to create unique patterns and designs, with some room for improvement in terms of color and stencil options.",
-    positive: [
-      "Easy application and removal of the low-tack adhesive",
-      "Ability to personalize projects and express individuality",
-      "Versatility in creating deserns",
-    ],
-    improvement: [
-      "Offer a wider range of color and pattern options",
-      "Provide more stencil design choices or the ability to create custom stencils",
-      "Expand the product's appeal to user`s with different creative needs and styles",
-    ],
-    keywords: [
-      "versatile",
-      "user-friendly",
-      "unique",
-      "personalize",
-      "express individuality",
-    ],
-    bestSeason: "spring",
-  };
+export function Evaluation({evaluation}) {
   return (
     <Flex
       justifyContent="center"
