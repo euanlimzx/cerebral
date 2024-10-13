@@ -6,6 +6,7 @@ import {
   Text,
   Flex,
   Collapse,
+  Fade,
   useDisclosure,
 } from "@chakra-ui/react";
 import { CountrySelect } from "@/components/countrySelect";
@@ -177,7 +178,7 @@ export default function Home() {
           </Flex>
         )}
         
-        {evaluationData && <Evaluation evaluation={evaluationData}/>}
+        {evaluationData && <Fade in={true}><Evaluation evaluation={evaluationData}/></Fade>}
       </Box>
     </Flex>
   );

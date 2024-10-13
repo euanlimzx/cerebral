@@ -4,12 +4,20 @@ import {
   Flex,
   Icon,
   HStack,
+  Button,
+  StatGroup,
+  Stat,
+  StatHelpText,
+  StatLabel,
+  StatNumber,
+  StatArrow,
   useDisclosure,
 } from "@chakra-ui/react";
 import { StarIcon, CheckIcon, WarningIcon } from "@chakra-ui/icons";
 import ReviewGallery from "./reviewGallery";
+import Link from "next/link";
 
-export function Evaluation({evaluation}) {
+export function Evaluation({ evaluation }) {
   return (
     <Flex
       justifyContent="center"
@@ -45,6 +53,21 @@ export function Evaluation({evaluation}) {
                 ))}
               </Flex>
             </HStack>
+            <StatGroup>
+              <Stat pr="7">
+                <StatLabel>Viewed</StatLabel>
+                <StatNumber>{evaluation["actionBreakdown"]["view"]}<Text fontSize="md" pl="1" as="span">%</Text></StatNumber>
+              </Stat>
+
+              <Stat pr="7">
+                <StatLabel>Liked</StatLabel>
+                <StatNumber>{evaluation["actionBreakdown"]["like"]}<Text fontSize="md" pl="1" as="span">%</Text></StatNumber>
+              </Stat>
+              <Stat pr="7">
+                <StatLabel>Purchased</StatLabel>
+                <StatNumber>{evaluation["actionBreakdown"]["purchase"]}<Text fontSize="md" pl="1" as="span">%</Text></StatNumber>
+              </Stat>
+            </StatGroup>
           </Flex>
           <Flex
             alignItems="start"
@@ -108,8 +131,16 @@ export function Evaluation({evaluation}) {
           <Text fontSize="xl" fontWeight="semibold">
             Here are some user profiles that stood out:
           </Text>
-          <ReviewGallery />
+          <ReviewGallery reviews={evaluation["generated_reviews"]} />
         </VStack>
+        <Button
+          size="lg"
+          onClick={() => window.location.reload()}
+          colorScheme="blackAlpha"
+          bg="black"
+        >
+          Analyse another product
+        </Button>
       </VStack>
     </Flex>
   );
