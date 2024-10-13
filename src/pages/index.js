@@ -13,6 +13,7 @@ import TagSelect from "@/components/tagSelect";
 import ProductGallery from "@/components/productGallery";
 import Header from "@/components/header";
 import SideBar from "@/components/sidebar"; // Import the updated Sidebar component
+import axios from "axios";
 
 export default function Home() {
   const [pid, setPid] = useState("");
@@ -46,13 +47,15 @@ export default function Home() {
 
   const { isOpen: isEvaluatorOpen, onToggle: onToggleEvaluator } =
     useDisclosure();
-  const handleEvaluation = () => {
-    console.log({
+  const handleEvaluation = async () => {
+    const payload = {
       pid: pid,
       country: country,
-      demographicTags: tags,
-    });
+      tags: tags,
+    };
     onToggleEvaluator()
+    const data = await axios.post("https://638zqrk9-8080.usw2.devtunnels.ms/generate-evaluation", payload)
+    console.log(data)
   };
   return (
     <Flex minHeight="100vh" width="100%">
