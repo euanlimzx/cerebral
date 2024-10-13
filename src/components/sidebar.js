@@ -82,33 +82,32 @@ export default function SideBar() {
         align="stretch"
         marginTop="15px"
         height="calc(100vh - 100px)"
-        overflowY="auto"
       >
-        <InteractiveBox hoverEffect={true} borderRadius="5">
+        <InteractiveBox hoverEffect={true}>
           Adult Diapers
         </InteractiveBox>
 
-        <InteractiveBox hoverEffect={true} borderRadius="5">
+        <InteractiveBox hoverEffect={true}>
           Lubricant
         </InteractiveBox>
 
-        <InteractiveBox hoverEffect={true} borderRadius="5">
+        <InteractiveBox hoverEffect={true}>
           Headphones
         </InteractiveBox>
 
-        <InteractiveBox hoverEffect={true} borderRadius="5">
+        <InteractiveBox hoverEffect={true}>
           Mini Dress
         </InteractiveBox>
 
-        <InteractiveBox hoverEffect={true} borderRadius="5">
+        <InteractiveBox hoverEffect={true}>
           Suits
         </InteractiveBox>
 
-        <InteractiveBox hoverEffect={true} borderRadius="5">
+        <InteractiveBox hoverEffect={true}>
           Hoodie
         </InteractiveBox>
 
-        <InteractiveBox hoverEffect={true} borderRadius="5">
+        <InteractiveBox hoverEffect={true}>
           Pants
         </InteractiveBox>
       </VStack>
