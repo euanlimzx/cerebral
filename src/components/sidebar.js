@@ -25,7 +25,7 @@ function InteractiveBox({ hoverEffect, children }) {
       bg="white"
       transition="all 0.2s ease-in-out"
       _hover={hoverEffect ? {
-        bg: "lightgrey",
+        bg: "gray.100",
         cursor: "pointer",
         transform: "scale(1.05)",
         boxShadow: "lg",
