@@ -23,10 +23,10 @@ export function ReviewCard({ review }) {
     <>
       {" "}
       <Card
-        minH="200px"
+        minH="80px"
         minW="270px"
         borderRadius="1rem"
-        border="1px" // Set border width
+        bx="1px" // Set border width
         borderColor="lightgrey" // Set light grey color
         boxShadow="md"
         borderWidth="1px"
@@ -37,21 +37,18 @@ export function ReviewCard({ review }) {
         onClick={onOpen}
       >
         <CardBody>
-          <Stack mt="6" spacing="3">
+          <Stack mt="2">
             <Heading size="md">
               {Array.from({ length: 5 }, (_, index) => (
                 <Icon
                   key={index + 1}
                   as={StarIcon}
                   color={
-                    index + 1 < parseInt(review["rating"])
+                    index + 1 <= parseInt(review["rating"])
                       ? "black"
                       : "gray.300"
                   }
-                  boxSize={6}
-                  cursor="pointer"
-                  onClick={() => handleClick(index + 1)} // Handle click for setting the rating
-                  _hover={{ color: "teal.300" }} // Change color on hover
+                  boxSize={4}
                 />
               ))}
             </Heading>
@@ -59,12 +56,23 @@ export function ReviewCard({ review }) {
           </Stack>
         </CardBody>
       </Card>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} borderRadius="1rem">
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader pt="3rem">
+            {Array.from({ length: 5 }, (_, index) => (
+              <Icon
+                key={index + 1}
+                as={StarIcon}
+                color={
+                  index + 1 <= parseInt(review["rating"]) ? "black" : "gray.300"
+                }
+                boxSize={4}
+              />
+            ))}
+          </ModalHeader>
           <ModalCloseButton />
-          <ModalBody></ModalBody>
+          <ModalBody pb="5rem">{review["explanation"]}</ModalBody>
         </ModalContent>
       </Modal>
     </>
