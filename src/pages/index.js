@@ -14,11 +14,15 @@ import ProductGallery from "@/components/productGallery";
 import Header from "@/components/header";
 import SideBar from "@/components/sidebar"; // Import the updated Sidebar component
 import axios from "axios";
+import Image from "next/image";
+import TypewriterText from "@/components/typewriter";
 
 export default function Home() {
   const [pid, setPid] = useState("");
   const [country, setCountry] = useState("Select a Country");
   const [tags, setTags] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [evaluationData, setEvaluationData] = useState();
 
   const { isOpen: isProductSelectorOpen, onToggle: onToggleProductSelector } =
     useDisclosure({ defaultIsOpen: true });
@@ -53,9 +57,23 @@ export default function Home() {
       country: country,
       tags: tags,
     };
-    onToggleEvaluator()
-    const data = await axios.post("https://638zqrk9-8080.usw2.devtunnels.ms/generate-evaluation", payload)
-    console.log(data)
+    onToggleEvaluator();
+    setIsLoading(true);
+    try {
+      const response = await axios.post(
+        "https://638zqrk9-8080.usw2.devtunnels.ms/generate-evaluation",
+        payload
+      );
+      console.log(response.data);
+      // Handle the response as needed
+    } catch (error) {
+      console.error("Error during evaluation:", error);
+      // Optionally handle the error
+    } finally {
+      setEvaluationData(response.data);
+      setIsLoading(false); // Set loading to false when done
+      console.log(data);
+    }
   };
   return (
     <Flex minHeight="100vh" width="100%">
@@ -84,7 +102,7 @@ export default function Home() {
         alignItems="center"
         flexDirection="column"
       >
-        <Collapse unmountOnExit={true} in={isProductSelectorOpen}>
+        {/* <Collapse unmountOnExit={true} in={isProductSelectorOpen}>
           <Text
             fontSize="xx-large"
             fontWeight="semibold"
@@ -95,7 +113,7 @@ export default function Home() {
             Which product would you like to evaluate today?
           </Text>
           <ProductGallery pid={pid} productToCountry={productToCountry} />
-        </Collapse>
+        </Collapse> */}
 
         <Collapse unmountOnExit={true} in={isCountrySelectorOpen}>
           {/* Additional Content */}
@@ -144,6 +162,22 @@ export default function Home() {
             </Text>
           </Button>
         </Collapse>
+
+        {isLoading && (
+          <Flex flexDirection="column">
+            <Box h="20px">
+              <TypewriterText />
+            </Box>
+            <Image
+              src="/airplane.gif"
+              width={700}
+              height={700}
+              alt="airplane"
+            />
+          </Flex>
+        )}
+
+        {evaluationData && <Box>{evaluationData}</Box>}
       </Box>
     </Flex>
   );
