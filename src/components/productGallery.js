@@ -1,7 +1,7 @@
 import { Box, HStack, Text, Icon, Divider } from "@chakra-ui/react";
 import { InfoIcon } from "@chakra-ui/icons";
 import { ProductCard } from "./productCard";
-export default function ProductGallery({ pid, setPid }) {
+export default function ProductGallery({ pid, productToCountry }) {
   const data = [
     {
       "Uniqe Id": "0379ca9ef04209d1aae2106711eb7c76",
@@ -188,10 +188,10 @@ export default function ProductGallery({ pid, setPid }) {
   ];
 
   return (
-    <Box height="100vh" display="flex" flexDirection="row">
-    <HStack spacing="5" overflowX="scroll" w="60rem">
+    <Box display="flex" flexDirection="row" maxW="60rem">
+    <HStack spacing="5" overflowX="auto" w="100%" py="3">
       {data.map((product) => (
-        <ProductCard setPid={setPid} product={product} key={product.id} />
+        <ProductCard productToCountry={productToCountry} product={product} key={product.id} />
       ))}
     </HStack>
   </Box>

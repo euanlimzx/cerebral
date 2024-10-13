@@ -6,24 +6,26 @@ import {
   TagCloseButton,
   Wrap,
   Box,
+  Flex,
+  Button,
   Text,
 } from "@chakra-ui/react";
 
 const colorPalette = [
-    'blackAlpha',
-    'gray',
-    'red',
-    'orange',
-    'yellow',
-    'green',
-    'teal',
-    'blue',
-    'cyan',
-    'purple',
-    'pink',
-  ];
+  "blackAlpha",
+  "gray",
+  "red",
+  "orange",
+  "yellow",
+  "green",
+  "teal",
+  "blue",
+  "cyan",
+  "purple",
+  "pink",
+];
 
-const TagSelect = ({tags, setTags}) => {
+const TagSelect = ({ tags, setTags, DemographicToEvaluator }) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleKeyDown = (event) => {
@@ -43,10 +45,10 @@ const TagSelect = ({tags, setTags}) => {
     for (let i = 0; i < inputString.length; i++) {
       hash += inputString.charCodeAt(i); // Sum of character codes
     }
-    
+
     // Generate a consistent integer between 0 and 10
     const result = Math.abs(hash) % 11; // Modulus to fit in the range [0, 10]
-    
+
     return result;
   }
 
@@ -55,7 +57,7 @@ const TagSelect = ({tags, setTags}) => {
   };
 
   return (
-    <Box w="50%">
+    <Box px="1" maxW="40vw">
       <Input
         placeholder="e.g. Schooling Students, Sporty, Tech-Savvy"
         value={inputValue}
@@ -64,12 +66,20 @@ const TagSelect = ({tags, setTags}) => {
       />
       <Wrap spacing={2} mt="1rem">
         {tags.map((tag, index) => (
-          <Tag key={index} size="md" variant="solid" colorScheme={colorPalette[generateConsistentInteger(tag)]}>
+          <Tag
+            key={index}
+            size="md"
+            variant="solid"
+            colorScheme={colorPalette[generateConsistentInteger(tag)]}
+          >
             <TagLabel>{tag}</TagLabel>
             <TagCloseButton onClick={() => handleDelete(tag)} />
           </Tag>
         ))}
       </Wrap>
+      <Flex justifyContent="end" pt="1rem">
+        <Button size="lg" onClick={DemographicToEvaluator}>Done</Button>
+      </Flex>
     </Box>
   );
 };

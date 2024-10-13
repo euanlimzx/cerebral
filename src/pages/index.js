@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Box, Button, VStack, Text, Flex } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  VStack,
+  Text,
+  Flex,
+  Collapse,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { CountrySelect } from "@/components/countrySelect";
 import TagSelect from "@/components/tagSelect";
 import ProductGallery from "@/components/productGallery";
@@ -11,12 +19,40 @@ export default function Home() {
   const [country, setCountry] = useState("Select a Country");
   const [tags, setTags] = useState([]);
 
-  const fuck = () => {
+  const { isOpen: isProductSelectorOpen, onToggle: onToggleProductSelector } =
+    useDisclosure({ defaultIsOpen: true });
+  const productToCountry = (pid) => {
+    setPid(pid);
+    onToggleProductSelector();
+    onToggleCountrySelector();
+  };
+
+  const { isOpen: isCountrySelectorOpen, onToggle: onToggleCountrySelector } =
+    useDisclosure();
+  const countryToDemographic = (country) => {
+    setCountry(country);
+    onToggleCountrySelector();
+    onToggleDemographicSelector();
+  };
+
+  const {
+    isOpen: isDemographicSelectorOpen,
+    onToggle: onToggleDemographicSelector,
+  } = useDisclosure();
+  const DemographicToEvaluator = () => {
+    onToggleDemographicSelector();
+    onToggleEvaluator();
+  };
+
+  const { isOpen: isEvaluatorOpen, onToggle: onToggleEvaluator } =
+    useDisclosure();
+  const handleEvaluation = () => {
     console.log({
       pid: pid,
-      countries: countries,
-      tags: tags,
+      country: country,
+      demographicTags: tags,
     });
+    onToggleEvaluator()
   };
   return (
     <Flex minHeight="100vh" width="100%">
@@ -39,26 +75,72 @@ export default function Home() {
         flex="1"
         ml="25%" // To prevent content from being hidden behind the sidebar
         p="8"
-        bg="#fafbfb"
+        h="100vh"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        flexDirection="column"
       >
-        <Header />
-        <Text fontSize="xx-large" fontWeight="semibold" pt="9" pb="4">
-          Which product would you like to evaluate today?
-        </Text>
-        <ProductGallery pid={pid} setPid={setPid} />
-        {/* Additional Content */}
-        <Text fontSize="xx-large" fontWeight="semibold" pt="9" pb="4">
-          Which geographical market do you want to break into?
-        </Text>
-        <CountrySelect country={country} setCountry={setCountry} />
-        <Text fontSize="xx-large" fontWeight="semibold" pt="9" pb="4">
-          Describe your target demographic to us.
-        </Text>
-        <TagSelect tags={tags} setTags={setTags} />
-        <Text fontSize="xx-large" fontWeight="semibold" pt="9" pb="4">
-          Good to go!
-        </Text>
-        <Button onClick={fuck}>Evaluate product-market fit</Button>
+        <Collapse unmountOnExit={true} in={isProductSelectorOpen}>
+          <Text
+            fontSize="xx-large"
+            fontWeight="semibold"
+            pt="9"
+            pb="4"
+            textAlign="center"
+          >
+            Which product would you like to evaluate today?
+          </Text>
+          <ProductGallery pid={pid} productToCountry={productToCountry} />
+        </Collapse>
+
+        <Collapse unmountOnExit={true} in={isCountrySelectorOpen}>
+          {/* Additional Content */}
+          <Box h="20rem">
+            <Text
+              fontSize="xx-large"
+              fontWeight="semibold"
+              pt="9"
+              pb="4"
+              transition="all 0.3s ease"
+            >
+              Which geographical market do you want to break into?
+            </Text>
+            <CountrySelect
+              country={country}
+              setCountry={countryToDemographic}
+            />
+          </Box>
+        </Collapse>
+
+        <Collapse unmountOnExit={true} in={isDemographicSelectorOpen}>
+          <Text fontSize="xx-large" fontWeight="semibold" pt="9" pb="4">
+            Describe your target demographic to us.
+          </Text>
+          <TagSelect
+            tags={tags}
+            setTags={setTags}
+            DemographicToEvaluator={DemographicToEvaluator}
+          />
+        </Collapse>
+        <Collapse in={isEvaluatorOpen} unmountOnExit={true}>
+          <Text fontSize="xx-large" fontWeight="semibold" pt="9" pb="4">
+            That&apos;s it - You&apos;re good to go!
+          </Text>
+          <Button
+            onClick={handleEvaluation}
+            h="3.5rem"
+            w="100%"
+            bgGradient="linear(to-l, #7928CA, #FF0080)"
+            _hover={{
+              bgGradient: "linear(to-r, red.500, yellow.500)",
+            }}
+          >
+            <Text color="white" fontSize="1.4rem">
+              Evaluate my product-market fit
+            </Text>
+          </Button>
+        </Collapse>
       </Box>
     </Flex>
   );
