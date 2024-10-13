@@ -96,7 +96,6 @@ export default function Home() {
         flex="1"
         ml="25%" // To prevent content from being hidden behind the sidebar
         p="8"
-        h="100vh"
         display="flex"
         justifyContent="center"
         alignItems="center"
