@@ -60,7 +60,7 @@ export function Evaluation() {
                     key={index + 1}
                     as={StarIcon}
                     color={
-                      index + 1 < evaluation["avgStarRating"]
+                      index + 1 <= evaluation["avgStarRating"]
                         ? "#7928CA"
                         : "gray.300"
                     }
