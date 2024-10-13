@@ -102,7 +102,7 @@ export default function Home() {
         alignItems="center"
         flexDirection="column"
       >
-        {/* <Collapse unmountOnExit={true} in={isProductSelectorOpen}>
+        <Collapse unmountOnExit={true} in={isProductSelectorOpen}>
           <Text
             fontSize="xx-large"
             fontWeight="semibold"
@@ -113,7 +113,7 @@ export default function Home() {
             Which product would you like to evaluate today?
           </Text>
           <ProductGallery pid={pid} productToCountry={productToCountry} />
-        </Collapse> */}
+        </Collapse>
 
         <Collapse unmountOnExit={true} in={isCountrySelectorOpen}>
           {/* Additional Content */}
