@@ -178,7 +178,7 @@ export default function Home() {
           </Flex>
         )}
         
-        {evaluationData && <Fade in={true}><Evaluation evaluation={evaluationData}/></Fade>}
+        {evaluationData && <Fade in={true}><Evaluation evaluation={evaluationData} pid={pid}/></Fade>}
       </Box>
     </Flex>
   );

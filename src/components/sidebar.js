@@ -77,11 +77,14 @@ export default function SideBar() {
         <Box 
           borderRadius="15px"
           overflow="hidden"
+          onClick={() => window.location.reload()}
+          cursor="pointer"
           >
           <Image 
             src="/images/evai_logo5.jpg" 
             height={60}
             width={60}
+            alt="logo"
           />
         </Box>
         <EditIcon />

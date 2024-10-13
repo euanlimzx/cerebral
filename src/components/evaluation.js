@@ -6,6 +6,7 @@ import {
   HStack,
   Button,
   StatGroup,
+  Image,
   Stat,
   StatHelpText,
   StatLabel,
@@ -16,8 +17,14 @@ import {
 import { StarIcon, CheckIcon, WarningIcon } from "@chakra-ui/icons";
 import ReviewGallery from "./reviewGallery";
 import Link from "next/link";
+import { productData } from "./productGallery";
 
-export function Evaluation({ evaluation }) {
+export function Evaluation({ evaluation, pid }) {
+  const findObjectById = (pid) => {
+    const obj = productData.find((object) => object["Uniqe Id"] === pid);
+    return obj
+  };
+  findObjectById(pid)
   return (
     <Flex
       justifyContent="center"
@@ -56,16 +63,31 @@ export function Evaluation({ evaluation }) {
             <StatGroup>
               <Stat pr="7">
                 <StatLabel>Viewed</StatLabel>
-                <StatNumber>{evaluation["actionBreakdown"]["view"]}<Text fontSize="md" pl="1" as="span">%</Text></StatNumber>
+                <StatNumber>
+                  {evaluation["actionBreakdown"]["view"]}
+                  <Text fontSize="md" pl="1" as="span">
+                    %
+                  </Text>
+                </StatNumber>
               </Stat>
 
               <Stat pr="7">
                 <StatLabel>Liked</StatLabel>
-                <StatNumber>{evaluation["actionBreakdown"]["like"]}<Text fontSize="md" pl="1" as="span">%</Text></StatNumber>
+                <StatNumber>
+                  {evaluation["actionBreakdown"]["like"]}
+                  <Text fontSize="md" pl="1" as="span">
+                    %
+                  </Text>
+                </StatNumber>
               </Stat>
               <Stat pr="7">
                 <StatLabel>Purchased</StatLabel>
-                <StatNumber>{evaluation["actionBreakdown"]["purchase"]}<Text fontSize="md" pl="1" as="span">%</Text></StatNumber>
+                <StatNumber>
+                  {evaluation["actionBreakdown"]["purchase"]}
+                  <Text fontSize="md" pl="1" as="span">
+                    %
+                  </Text>
+                </StatNumber>
               </Stat>
             </StatGroup>
           </Flex>
@@ -132,6 +154,28 @@ export function Evaluation({ evaluation }) {
             Here are some user profiles that stood out:
           </Text>
           <ReviewGallery reviews={evaluation["generated_reviews"]} />
+        </VStack>
+        <VStack>
+          <Text fontSize="xl" fontWeight="semibold">
+            Finally, we&apos;ve also found some ways you could optimize your
+            cover image:
+          </Text>
+          <HStack pt="1rem">
+            <Image 
+              boxSize="200px"
+              src={findObjectById(pid)["Image"]}
+              alt="Green double couch with wooden legs"
+              borderRadius="2.5rem"
+            />
+ 
+            <Text>
+              {/* evaluation["imageRecommendation"] */}
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero
+              fugiat praesentium ea voluptas voluptatibus maiores, ex
+              repellendus dicta officiis dolor facilis quibusdam, optio culpa
+              eos, ratione repellat alias nam dolores?
+            </Text>
+          </HStack>
         </VStack>
         <Button
           size="lg"
