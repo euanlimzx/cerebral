@@ -1,18 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Box,
-  Button,
-  VStack,
-  Text,
+  Button, Text,
   Flex,
   Collapse,
   Fade,
-  useDisclosure,
+  useDisclosure
 } from "@chakra-ui/react";
 import { CountrySelect } from "@/components/countrySelect";
 import TagSelect from "@/components/tagSelect";
 import ProductGallery from "@/components/productGallery";
-import Header from "@/components/header";
 import SideBar from "@/components/sidebar"; // Import the updated Sidebar component
 import axios from "axios";
 import Image from "next/image";
@@ -64,8 +61,14 @@ export default function Home() {
     try {
       const response = await axios.post(
         "https://evai-backend-a3n9p.ondigitalocean.app/generate-evaluation",
-        payload
+        payload,
+        {
+          headers: {
+            Authorization: "peepeepoopoo" // Set the Authorization header
+          }
+        }
       );
+      
       console.log(response.data)
       setEvaluationData(response.data);
 

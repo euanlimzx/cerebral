@@ -1,30 +1,25 @@
 import {
-  VStack,
-  Text,
-  Flex,
-  Icon,
-  HStack,
-  Button,
-  StatGroup,
-  Image,
-  Stat,
-  StatHelpText,
-  StatLabel,
-  StatNumber,
-  StatArrow,
-  useDisclosure,
+    VStack,
+    Text,
+    Flex,
+    Icon,
+    HStack,
+    Button,
+    StatGroup,
+    Image,
+    Stat, StatLabel,
+    StatNumber
 } from "@chakra-ui/react";
 import { StarIcon, CheckIcon, WarningIcon } from "@chakra-ui/icons";
 import ReviewGallery from "./reviewGallery";
-import Link from "next/link";
 import { productData } from "./productGallery";
 
 export function Evaluation({ evaluation, pid }) {
   const findObjectById = (pid) => {
     const obj = productData.find((object) => object["Uniqe Id"] === pid);
-    return obj
+    return obj;
   };
-  findObjectById(pid)
+  findObjectById(pid);
   return (
     <Flex
       justifyContent="center"
@@ -153,7 +148,7 @@ export function Evaluation({ evaluation, pid }) {
           <Text fontSize="xl" fontWeight="semibold">
             Here are some user profiles that stood out:
           </Text>
-          <ReviewGallery reviews={evaluation["generated_reviews"]} />
+          <ReviewGallery reviews={evaluation["generatedReviews"]} />
         </VStack>
         <VStack>
           <Text fontSize="xl" fontWeight="semibold">
@@ -161,19 +156,15 @@ export function Evaluation({ evaluation, pid }) {
             cover image:
           </Text>
           <HStack pt="1rem">
-            <Image 
+            <Image
               boxSize="200px"
               src={findObjectById(pid)["Image"]}
               alt="Green double couch with wooden legs"
               borderRadius="2.5rem"
             />
- 
+
             <Text>
-              {/* evaluation["imageRecommendation"] */}
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero
-              fugiat praesentium ea voluptas voluptatibus maiores, ex
-              repellendus dicta officiis dolor facilis quibusdam, optio culpa
-              eos, ratione repellat alias nam dolores?
+              {evaluation["imageRecommendation"]}
             </Text>
           </HStack>
         </VStack>
