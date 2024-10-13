@@ -55,25 +55,25 @@ export default function Home() {
     const payload = {
       pid: pid,
       country: country,
-      tags: tags,
+      demographicTags: tags,
     };
     onToggleEvaluator();
     setIsLoading(true);
     try {
       const response = await axios.post(
-        "https://638zqrk9-8080.usw2.devtunnels.ms/generate-evaluation",
+        "https://evai-backend-a3n9p.ondigitalocean.app/generate-evaluation",
         payload
       );
-      console.log(response.data);
+      console.log(response.data)
+      setEvaluationData(response.data);
+
       // Handle the response as needed
     } catch (error) {
       console.error("Error during evaluation:", error);
       // Optionally handle the error
-    } finally {
-      setEvaluationData(response.data);
-      setIsLoading(false); // Set loading to false when done
-      console.log(data);
     }
+    setIsLoading(false); // Set loading to false when done
+
   };
   return (
     <Flex minHeight="100vh" width="100%">
@@ -176,7 +176,7 @@ export default function Home() {
           </Flex>
         )}
 
-        {evaluationData && <Box>{evaluationData}</Box>}
+        {/* {evaluationData && <Box>{evaluationData}</Box>} */}
       </Box>
     </Flex>
   );

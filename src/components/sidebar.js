@@ -95,31 +95,31 @@ export default function SideBar() {
         height="calc(100vh - 100px)"
       >
         <InteractiveBox hoverEffect={true}>
-          Adult Diapers
+          LANER Romper
         </InteractiveBox>
 
         <InteractiveBox hoverEffect={true}>
-          Lubricant
+          VeraVE Body Moisturizing Lotion
         </InteractiveBox>
 
         <InteractiveBox hoverEffect={true}>
-          Headphones
+          Beets Headphones
         </InteractiveBox>
 
         <InteractiveBox hoverEffect={true}>
-          Mini Dress
+          Decibel Mini Dress
         </InteractiveBox>
 
         <InteractiveBox hoverEffect={true}>
-          Suits
+          Bugo Loss Suits
         </InteractiveBox>
 
         <InteractiveBox hoverEffect={true}>
-          Hoodie
+          Lessentials Hoodie
         </InteractiveBox>
 
         <InteractiveBox hoverEffect={true}>
-          Pants
+          Kalvin Clein Pants
         </InteractiveBox>
       </VStack>
 
